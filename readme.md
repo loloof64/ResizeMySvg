@@ -1,5 +1,5 @@
-# freya-template 🦀
+# Resize my Svg
 
-This is a simple template for [Freya](https://github.com/marc2332/freya).
+Display your svg image and resize it with a slider.
 
 ![Demo Screenshot](./demo.png)
