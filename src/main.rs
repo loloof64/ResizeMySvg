@@ -5,29 +5,24 @@
 
 use freya::prelude::*;
 
+static CRAB: &[u8] = include_bytes!("./crab.svg");
+
 fn main() {
     launch(app);
 }
 
 fn app() -> Element {
-    let mut times = use_signal(|| 1);
-
-    let exclamations = "!".repeat(times());
-
+    let crab = dynamic_bytes(CRAB);
     rsx!(
         rect {
-            width: "100%",
-            height: "100%",
-            background: "rgb(57, 138, 215)",
             main_align: "center",
             cross_align: "center",
-            onclick: move |_| times += 1,
-            label {
-                width: "100%",
-                font_size: "50",
-                text_align: "center",
-                color: "white",
-                "Hello, World{exclamations}"
+            width: "100%",
+            height: "100%",
+            svg {
+                width: "100",
+                height: "100",
+                svg_data: crab,
             }
         }
     )
