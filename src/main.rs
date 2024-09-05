@@ -13,16 +13,28 @@ fn main() {
 
 fn app() -> Element {
     let crab = dynamic_bytes(CRAB);
+    let size_unit = 2f64;
+    let mut size_percentage = use_signal(|| 1.0);
+
     rsx!(
         rect {
             main_align: "center",
             cross_align: "center",
             width: "100%",
             height: "100%",
+
             svg {
-                width: "100",
-                height: "100",
+                width: "{size_percentage * size_unit}",
+                height: "{size_percentage * size_unit}",
                 svg_data: crab,
+            }
+
+            Slider {
+                width: "50%",
+                value: *size_percentage.read(),
+                onmoved: move |s| {
+                    size_percentage.set(s);
+                }
             }
         }
     )
