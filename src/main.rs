@@ -1,5 +1,7 @@
 #![cfg_attr(all(not(debug_assertions), target_os = "windows"), windows_subsystem = "windows")]
 
+use std::path::PathBuf;
+
 use freya::prelude::*;
 use bytes::Bytes;
 
@@ -11,13 +13,22 @@ fn main() {
 
 fn app() -> Element {
     let size_unit = 2f64;
-    let mut size_percentage = use_signal(|| 1.0);
+    let mut size_percentage = use_signal(|| 50.0);
     let open_file_svg = static_bytes(OPEN);
     let mut svg_bytes = use_signal::<Option<Bytes>>(|| None);
-    let svg_data = svg_bytes 
+    let svg_data = svg_bytes
         .read()
         .as_ref()
         .map(|bytes| dynamic_bytes(bytes.clone()));
+
+    let set_image_from_path = move |path: PathBuf| {
+        spawn(async move {
+            let file_content = tokio::fs::read(path).await;
+            if let Ok(file_content) = file_content {
+                svg_bytes.set(Some(Bytes::from(file_content)));
+            }
+        });
+    };
 
     let open_image = move |_| {
         spawn(async move {
@@ -27,13 +38,16 @@ fn app() -> Element {
                 .show_open_single_file()
                 .expect("failed to open file chooser");
             if let Some(path) = path {
-                let file_content = tokio::fs::read(path.as_os_str()).await;
-                if let Ok(file_content) = file_content {
-                    svg_bytes .set(Some(Bytes::from(file_content)));
-                }
+                set_image_from_path(path);
             }
         });
     };
+
+    use_effect(move || {
+        spawn(async move {
+            set_image_from_path(PathBuf::from("./crab.svg"));
+        });
+    });
 
     rsx!(
         rect {
