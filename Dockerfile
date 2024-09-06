@@ -25,16 +25,8 @@ ENV PATH="/home/docker_user/.cargo/bin:${PATH}"
 
 WORKDIR /app
 
-# Copy project files into container
-COPY Cargo.toml Cargo.lock ./
-COPY src ./src
-COPY icons ./icons
-
 # Install cargo packager
 RUN cargo install cargo-packager --locked
-
-# Build AppImage
-RUN cargo packager --release
 
 # Generate a script in order to copy executable
 RUN echo '#!/bin/bash\n\
@@ -50,3 +42,11 @@ USER docker_user
 
 # Set up volume for access from host
 VOLUME /output
+
+# Copy project files into container
+COPY Cargo.toml Cargo.lock ./
+COPY src ./src
+COPY icons ./icons
+
+# Build AppImage
+RUN cargo packager --release

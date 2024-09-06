@@ -6,6 +6,7 @@ use freya::prelude::*;
 use bytes::Bytes;
 
 static OPEN: &[u8] = include_bytes!("./open.svg");
+static CRAB: &[u8] = include_bytes!("./crab.svg");
 
 fn main() {
     launch(app);
@@ -44,9 +45,7 @@ fn app() -> Element {
     };
 
     use_effect(move || {
-        spawn(async move {
-            set_image_from_path(PathBuf::from("./src/crab.svg"));
-        });
+        svg_bytes.set(Some(Bytes::from_static(CRAB)));
     });
 
     rsx!(
