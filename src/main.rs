@@ -45,7 +45,7 @@ fn app() -> Element {
 
     use_effect(move || {
         spawn(async move {
-            set_image_from_path(PathBuf::from("./crab.svg"));
+            set_image_from_path(PathBuf::from("./src/crab.svg"));
         });
     });
 
