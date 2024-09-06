@@ -1,6 +1,6 @@
 [package]
 name = "resize_my_svg"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 
 [dependencies]
@@ -9,3 +9,18 @@ dioxus = { version = "0.5", default-features = false, features = ["macro", "hook
 tokio = { version = "1.40.0", features = ["fs"] }
 bytes = "1.7.1"
 native-dialog = { version = "0.7.0", features = ["windows_dpi_awareness", "windows_visual_styles"] }
+
+[package.metadata.packager]
+beforePackagingCommand = "cargo build --release"
+name = "resize_my_svg"
+productName = "ResizeMySvg"
+identifier = "com.loloof64.resize_my_svg"
+icons = [
+    "icons/icon_512x512.png",
+    "icons/icon_256x256.png",
+    "icons/icon_128x128.png",
+    "icons/icon_64x64.png",
+]
+category = "Utility"
+description = "Display your svg image and resize its preview with a slider."
+resources = ["icons/*"]

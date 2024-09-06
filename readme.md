@@ -1,6 +1,6 @@
 # Resize my Svg
 
-Display your svg image and resize it with a slider.
+Display your svg image and resize its preview with a slider.
 
 <img src="./preview.png" width="250" height="250" />
 
@@ -26,3 +26,5 @@ Inside the terminal of your container run :
 Using crab image from https://www.svgrepo.com/svg/396221/crab.
 
 Using open image from https://www.svgrepo.com/svg/501815/open-open-a-file.
+
+Using gallery image from https://icon-icons.com/fr/icone/image-paysage/53303.

@@ -28,13 +28,18 @@ WORKDIR /app
 # Copy project files into container
 COPY Cargo.toml Cargo.lock ./
 COPY src ./src
+COPY icons ./icons
 
-RUN cargo build --release
+# Install cargo packager
+RUN cargo install cargo-packager --locked
+
+# Build AppImage
+RUN cargo packager --release
 
 # Generate a script in order to copy executable
 RUN echo '#!/bin/bash\n\
-cp /app/target/release/resize_my_svg /output/ 2>/dev/null || \
-sudo cp /app/target/release/resize_my_svg /output/' > /home/docker_user/copy_executable.sh && \
+cp /app/target/release/*.AppImage /output/ 2>/dev/null || \
+sudo cp /app/target/release/*.AppImage /output/' > /home/docker_user/copy_executable.sh && \
     chmod +x /home/docker_user/copy_executable.sh
 
 # Install sudo
