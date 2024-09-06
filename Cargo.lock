@@ -1867,17 +1867,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "freya-template"
-version = "0.1.0"
-dependencies = [
- "bytes",
- "dioxus",
- "freya",
- "native-dialog",
- "tokio",
-]
-
-[[package]]
 name = "freya-testing"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3565,6 +3554,17 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "winreg",
+]
+
+[[package]]
+name = "resize_my_svg"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+ "dioxus",
+ "freya",
+ "native-dialog",
+ "tokio",
 ]
 
 [[package]]
