@@ -2,6 +2,7 @@
 name = "resize_my_svg"
 version = "1.0.0"
 edition = "2021"
+build = "build.rs"
 
 [dependencies]
 freya = "0.2"
@@ -24,3 +25,6 @@ icons = [
 category = "Utility"
 description = "Display your svg image and resize its preview with a slider."
 resources = ["icons/*"]
+
+[build-dependencies]
+winresource = "0.1.7"
