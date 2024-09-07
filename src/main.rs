@@ -7,12 +7,14 @@ use bytes::Bytes;
 
 static OPEN: &[u8] = include_bytes!("./open.svg");
 static CRAB: &[u8] = include_bytes!("./crab.svg");
+static ICON: &[u8] = include_bytes!("./gallery.png");
 
 fn main() {
     launch_cfg(
         app,
         LaunchConfig::<()>::builder()
             .with_title("Resize my svg")
+            .with_icon(LaunchConfig::load_icon(ICON))
             .build()
     );
 }
