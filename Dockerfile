@@ -44,7 +44,7 @@ USER docker_user
 VOLUME /output
 
 # Copy project files into container
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml Cargo.lock build.rs ./
 COPY src ./src
 COPY icons ./icons
 
