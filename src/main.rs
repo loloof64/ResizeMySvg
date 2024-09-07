@@ -9,7 +9,12 @@ static OPEN: &[u8] = include_bytes!("./open.svg");
 static CRAB: &[u8] = include_bytes!("./crab.svg");
 
 fn main() {
-    launch(app);
+    launch_cfg(
+        app,
+        LaunchConfig::<()>::builder()
+            .with_title("Resize my svg")
+            .build()
+    );
 }
 
 fn app() -> Element {
