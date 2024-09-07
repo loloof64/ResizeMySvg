@@ -10,6 +10,14 @@ Please notice that as for now there's a little bug : the image must not set widt
 
 ## Building
 
+### Windows
+
+1. Ensure that you have Visual Studio 2022 (Community version is enough)
+2. Install Rustup (choose option 1 : install via Visual Studio, then option 1 : default host triple)
+3. Install cargo packager : `cargo install cargo-packager --locked` inside terminal
+4. Build the exe file : `cargo packager --release` inside terminal in the root directory of this project
+5. The built setup exe will be in folder **target/release**
+
 ### AppImage in a Docker container (Linux)
 
 To build the AppImage in a Docker container (you may want to launch as sudo-user/root) :
